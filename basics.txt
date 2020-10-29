@@ -1,0 +1,31 @@
+mysql> create table user(userid int,fname varchar(200),lname varchar(200),Email varchar(200),Number int);
+ERROR 1050 (42S01): Table 'user' already exists
+mysql> create table userform(userid int,fname varchar(200),lname varchar(200),Email varchar(200),Number int);
+Query OK, 0 rows affected (1.12 sec)
+mysql> describe userform;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| userid | int(11)      | YES  |     | NULL    |       |
+| fname  | varchar(200) | YES  |     | NULL    |       |
+| lname  | varchar(200) | YES  |     | NULL    |       |
+| Email  | varchar(200) | YES  |     | NULL    |       |
+| Number | int(11)      | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+5 rows in set (0.27 sec)
+
+mysql> insert into userform (userid,fname,lname,Email,Number)values(1,'sand','kaali','sandy@gmail.com',78908790);
+Query OK, 1 row affected (0.88 sec)
+
+mysql>
+mysql> insert into userform (userid,fname,lname,Email,Number)values(1,'Nand','kali','Nandy@gmail.com',77908790);
+Query OK, 1 row affected (0.09 sec)
+insert into userform (userid,fname,lname,Email,Number)valu' at line 1
+mysql> select * from userform;
++--------+-------+-------+-----------------+----------+
+| userid | fname | lname | Email           | Number   |
++--------+-------+-------+-----------------+----------+
+|      1 | sand  | kaali | sandy@gmail.com | 78908790 |
+|      1 | Nand  | kali  | Nandy@gmail.com | 77908790 |
++--------+-------+-------+-----------------+----------+
+2 rows in set (0.18 sec)
