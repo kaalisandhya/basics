@@ -1,0 +1,74 @@
+mysql> desc userforms;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| userid | int(11)      | YES  |     | NULL    |       |
+| fname  | varchar(200) | YES  |     | NULL    |       |
+| lname  | varchar(200) | YES  |     | NULL    |       |
+| Email  | varchar(500) | YES  |     | NULL    |       |
+| Number | int(11)      | YES  |     | 9987    |       |
++--------+--------------+------+-----+---------+-------+
+5 rows in set (0.06 sec)
+
+mysql> insert into userforms(userid,fname,lname,Email,Number)values(1,'sandhya','kaali','sandy@hmail.com',67689905);
+Query OK, 1 row affected (0.31 sec)
+
+mysql> insert into userforms(userid,fname,lname,Email,Number)values(1,'navya','kanda','navya@hmail.com',67689905);
+Query OK, 1 row affected (0.11 sec)
+
+mysql> insert into userforms(userid,fname,lname,Email,Number)values(2,'teja','kanda','teja@hmail.com',6689905);
+Query OK, 1 row affected (0.14 sec)
+
+mysql> insert into userforms(userid,fname,lname,Email,Number)values(3,'mahi','konda','mahi@hmail.com',66809905);
+Query OK, 1 row affected (0.06 sec)
+
+mysql> select * from userforms;
++--------+---------+-------+-----------------+----------+
+| userid | fname   | lname | Email           | Number   |
++--------+---------+-------+-----------------+----------+
+|      1 | sandhya | kaali | sandy@hmail.com | 67689905 |
+|      1 | navya   | kanda | navya@hmail.com | 67689905 |
+|      2 | teja    | kanda | teja@hmail.com  |  6689905 |
+|      3 | mahi    | konda | mahi@hmail.com  | 66809905 |
++--------+---------+-------+-----------------+----------+
+4 rows in set (0.00 sec)
+mysql> update userforms set userid=0 where fname='sandhya';
+Query OK, 1 row affected (0.16 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+mysql> update userforms set fname='mounya'where fname='navya';
+Query OK, 1 row affected (0.14 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from userforms;
++--------+--------+-------+-----------------+----------+
+| userid | fname  | lname | Email           | Number   |
++--------+--------+-------+-----------------+----------+
+|      1 | mounya | kanda | navya@hmail.com | 67689905 |
+|      2 | teja   | kanda | teja@hmail.com  |  6689905 |
+|      3 | mahi   | konda | mahi@hmail.com  | 66809905 |
++--------+--------+-------+-----------------+----------+
+3 rows in set (0.01 sec)
+
+mysql> select * from userforms;
++--------+---------+-------+-----------------+----------+
+| userid | fname   | lname | Email           | Number   |
++--------+---------+-------+-----------------+----------+
+|      0 | sandhya | kaali | sandy@hmail.com | 67689905 |
+|      1 | navya   | kanda | navya@hmail.com | 67689905 |
+|      2 | teja    | kanda | teja@hmail.com  |  6689905 |
+|      3 | mahi    | konda | mahi@hmail.com  | 66809905 |
++--------+---------+-------+-----------------+----------+
+4 rows in set (0.00 sec)
+mysql> delete from userforms where userid=0;
+Query OK, 1 row affected (0.10 sec)
+
+mysql> select * from userforms;
++--------+-------+-------+-----------------+----------+
+| userid | fname | lname | Email           | Number   |
++--------+-------+-------+-----------------+----------+
+|      1 | navya | kanda | navya@hmail.com | 67689905 |
+|      2 | teja  | kanda | teja@hmail.com  |  6689905 |
+|      3 | mahi  | konda | mahi@hmail.com  | 66809905 |
++--------+-------+-------+-----------------+----------+
+3 rows in set (0.00 sec)
+

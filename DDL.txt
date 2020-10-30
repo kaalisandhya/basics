@@ -1,0 +1,92 @@
+mysql> create table userform(userid int,fname varchar(200),lname varchar(200),Email varchar(200),Number int);
+Query OK, 0 rows affected (1.12 sec)
+mysql> describe userform;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| userid | int(11)      | YES  |     | NULL    |       |
+| fname  | varchar(200) | YES  |     | NULL    |       |
+| lname  | varchar(200) | YES  |     | NULL    |       |
+| Email  | varchar(200) | YES  |     | NULL    |       |
+| Number | int(11)      | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+5 rows in set (0.27 sec)
+mysql> alter table userform modify Email varchar(500);
+Query OK, 4 rows affected (3.12 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> desc userform;
++---------+--------------+------+-----+---------+-------+
+| Field   | Type         | Null | Key | Default | Extra |
++---------+--------------+------+-----+---------+-------+
+| userid  | int(11)      | YES  |     | NULL    |       |
+| fname   | varchar(200) | YES  |     | NULL    |       |
+| lname   | varchar(200) | YES  |     | NULL    |       |
+| Email   | varchar(500) | YES  |     | NULL    |       |
+| Number  | int(11)      | YES  |     | NULL    |       |
+| address | varchar(200) | YES  |     | NULL    |       |
++---------+--------------+------+-----+---------+-------+
+6 rows in set (0.28 sec)
+
+mysql> alter table userform drop address;
+Query OK, 0 rows affected (1.33 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc userform;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| userid | int(11)      | YES  |     | NULL    |       |
+| fname  | varchar(200) | YES  |     | NULL    |       |
+| lname  | varchar(200) | YES  |     | NULL    |       |
+| Email  | varchar(500) | YES  |     | NULL    |       |
+| Number | int(11)      | YES  |     | NULL    |       |
++--------+--------------+------+-----+---------+-------+
+5 rows in set (0.04 sec)
+mysql> alter table userform alter Number set default 9987;
+Query OK, 0 rows affected (0.16 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> desc userform;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| userid | int(11)      | YES  |     | NULL    |       |
+| fname  | varchar(200) | YES  |     | NULL    |       |
+| lname  | varchar(200) | YES  |     | NULL    |       |
+| Email  | varchar(500) | YES  |     | NULL    |       |
+| Number | int(11)      | YES  |     | 9987    |       |
++--------+--------------+------+-----+---------+-------+
+5 rows in set (0.01 sec)
+
+mysql> alter table userform rename to userforms;
+Query OK, 0 rows affected (0.35 sec)
+
+mysql> truncate table userforms;
+Query OK, 0 rows affected (0.49 sec)
+
+mysql> select * from userforms;
+Empty set (0.00 sec)
+
+mysql> desc userforms;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| userid | int(11)      | YES  |     | NULL    |       |
+| fname  | varchar(200) | YES  |     | NULL    |       |
+| lname  | varchar(200) | YES  |     | NULL    |       |
+| Email  | varchar(500) | YES  |     | NULL    |       |
+| Number | int(11)      | YES  |     | 9987    |       |
++--------+--------------+------+-----+---------+-------+
+5 rows in set (0.00 sec)
+mysql> desc userforms;
++--------+--------------+------+-----+---------+-------+
+| Field  | Type         | Null | Key | Default | Extra |
++--------+--------------+------+-----+---------+-------+
+| userid | int(11)      | YES  |     | NULL    |       |
+| fname  | varchar(200) | YES  |     | NULL    |       |
+| lname  | varchar(200) | YES  |     | NULL    |       |
+| Email  | varchar(500) | YES  |     | NULL    |       |
+| Number | int(11)      | YES  |     | 9987    |       |
++--------+--------------+------+-----+---------+-------+
+5 rows in set (0.06 sec)
