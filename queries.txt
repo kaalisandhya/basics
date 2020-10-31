@@ -1,0 +1,145 @@
+mysql> desc student;
++------------+--------------+------+-----+---------+----------------+
+| Field      | Type         | Null | Key | Default | Extra          |
++------------+--------------+------+-----+---------+----------------+
+| student_id | int(11)      | NO   | PRI | NULL    | auto_increment |
+| name       | varchar(200) | YES  |     | NULL    |                |
+| major      | varchar(200) | YES  |     | NULL    |                |
++------------+--------------+------+-----+---------+----------------+
+3 rows in set (0.09 sec)
+
+mysql> insert into student(name,major)values('jack','Biology');
+Query OK, 1 row affected (0.16 sec)
+
+mysql> insert into student(name,major)values('kate','sociology');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into student(name,major)values('charle','chemistry');
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into student(name,major)values('jack','biology');
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into student(name,major)values('mike','computer science');
+Query OK, 1 row affected (0.07 sec)
+mysql> update student SET major='Bio' WHERE major='Biology';
+Query OK, 2 rows affected (0.21 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from student;
++------------+--------+------------------+
+| student_id | name   | major            |
++------------+--------+------------------+
+|          1 | jack   | Bio              |
+|          2 | kate   | sociology        |
+|          3 | charle | chemistry        |
+|          4 | jack   | Bio              |
+|          5 | mike   | computer science |
++------------+--------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> select student.name,
+student.major from 
+student ORDER BY name;
++--------+------------------+
+| name   | major            |
++--------+------------------+
+| charle | chemistry        |
+| jack   | Bio              |
+| jack   | Bio              |
+| kate   | sociology        |
+| mike   | computer science |
++--------+------------------+
+5 rows in set (0.37 sec)
+
+mysql> select student.name,
+student.major from
+student ORDER BY name desc;
++--------+------------------+
+| name   | major            |
++--------+------------------+
+| mike   | computer science |
+| kate   | sociology        |
+| jack   | Bio              |
+| jack   | Bio              |
+| charle | chemistry        |
++--------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from student
+ORDER BY student_id ASC;
++------------+--------+------------------+
+| student_id | name   | major            |
++------------+--------+------------------+
+|          1 | jack   | Bio              |
+|          2 | kate   | sociology        |
+|          3 | charle | chemistry        |
+|          4 | jack   | Bio              |
+|          5 | mike   | computer science |
++------------+--------+------------------+
+5 rows in set (0.04 sec)
+
+mysql> select * from student
+ORDER BY student_id desc;
++------------+--------+------------------+
+| student_id | name   | major            |
++------------+--------+------------------+
+|          5 | mike   | computer science |
+|          4 | jack   | Bio              |
+|          3 | charle | chemistry        |
+|          2 | kate   | sociology        |
+|          1 | jack   | Bio              |
++------------+--------+------------------+
+5 rows in set (0.00 sec)
+
+mysql> select * from student LIMIT 2;
++------------+------+-----------+
+| student_id | name | major     |
++------------+------+-----------+
+|          1 | jack | Bio       |
+|          2 | kate | sociology |
++------------+------+-----------+
+2 rows in set (0.07 sec)
+
+mysql> select * from student
+ORDER BY 
+student_id DESC LIMIT 2;
++------------+------+------------------+
+| student_id | name | major            |
++------------+------+------------------+
+|          5 | mike | computer science |
+|          4 | jack | Bio              |
++------------+------+------------------+
+2 rows in set (0.00 sec)
+
+mysql> select * from student 
+WHERE
+major IN('Biology','Chemistry');
++------------+--------+-----------+
+| student_id | name   | major     |
++------------+--------+-----------+
+|          3 | charle | chemistry |
++------------+--------+-----------+
+1 row in set (0.13 sec)
+
+mysql> select * from student 
+WHERE major IN('Biology','Chemistry') 
+AND student_id>2;
++------------+--------+-----------+
+| student_id | name   | major     |
++------------+--------+-----------+
+|          3 | charle | chemistry |
++------------+--------+-----------+
+1 row in set (0.44 sec)
+
+mysql> select DISTINCT name from student;
++--------+
+| name   |
++--------+
+| jack   |
+| kate   |
+| charle |
+| mike   |
++--------+
+4 rows in set (0.08 sec)
+
