@@ -1,0 +1,117 @@
+mysql> create table Emp(id int,
+Name varchar(200),
+DepId varchar(200));
+Query OK, 0 rows affected (0.84 sec)
+mysql> insert into Emp(Id,Name,DepId)values(1,'Brijen','1');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into Emp(Id,Name,DepId)values(2,'Raj','2');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into Emp(Id,Name,DepId)values(3,'Ritu','3');
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into Emp(Id,Name,DepId)values(4,'Alex','1');
+Query OK, 1 row affected (0.08 sec)
+
+mysql> insert into Emp(Id,Name,DepId)values(5,'Ben','4');
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into Emp(Id,Name,DepId)values(6,'Gwen','2');
+Query OK, 1 row affected (0.08 sec)
+mysql> select * from Emp;
++------+--------+-------+
+| id   | Name   | DepId |
++------+--------+-------+
+|    1 | Brijen | 1     |
+|    2 | Raj    | 2     |
+|    3 | Ritu   | 3     |
+|    4 | Alex   | 1     |
+|    5 | Ben    | 4     |
+|    6 | Gwen   | 2     |
++------+--------+-------+
+6 rows in set (0.00 sec)
+
+mysql> create table Dep(DepId varchar(200),
+Dep_name varchar(200));
+Query OK, 0 rows affected (0.46 sec)
+
+mysql> insert into Dep(DepId,Dep_name)values('1','IT');
+Query OK, 1 row affected (0.06 sec)
+
+mysql> insert into Dep(DepId,Dep_name)values('2','HR');
+Query OK, 1 row affected (0.08 sec)
+
+mysql> select * from Dep;
++-------+----------+
+| DepId | Dep_name |
++-------+----------+
+| 1     | IT       |
+| 2     | HR       |
++-------+----------+
+2 rows in set (0.00 sec)
+
+mysql> select Id,Name,Dep.DepId,Dep_name
+from Emp 
+join Dep on Emp.DepId=Dep.DepId;
++------+--------+-------+----------+
+| Id   | Name   | DepId | Dep_name |
++------+--------+-------+----------+
+|    1 | Brijen | 1     | IT       |
+|    2 | Raj    | 2     | HR       |
+|    4 | Alex   | 1     | IT       |
+|    6 | Gwen   | 2     | HR       |
++------+--------+-------+----------+
+4 rows in set (0.05 sec)
+mysql> select Id,Name,Dep.DepId,Dep_name from Emp
+left join 
+Dep on Emp.DepId=Dep.DepId;
++------+--------+-------+----------+
+| Id   | Name   | DepId | Dep_name |
++------+--------+-------+----------+
+|    1 | Brijen | 1     | IT       |
+|    4 | Alex   | 1     | IT       |
+|    2 | Raj    | 2     | HR       |
+|    6 | Gwen   | 2     | HR       |
+|    3 | Ritu   | NULL  | NULL     |
+|    5 | Ben    | NULL  | NULL     |
++------+--------+-------+----------+
+6 rows in set (0.01 sec)
+
+mysql> select Id,Name,Dep.DepId,Dep_name from Emp 
+right join 
+Dep on Emp.DepId=Dep.DepId;
++------+--------+-------+----------+
+| Id   | Name   | DepId | Dep_name |
++------+--------+-------+----------+
+|    1 | Brijen | 1     | IT       |
+|    2 | Raj    | 2     | HR       |
+|    4 | Alex   | 1     | IT       |
+|    6 | Gwen   | 2     | HR       |
++------+--------+-------+----------+
+4 rows in set (0.00 sec)
+mysql> select Id,Name,Dep.DepId,Dep_name from Emp 
+inner join 
+Dep on Emp.DepId=Dep.DepId;
++------+--------+-------+----------+
+| Id   | Name   | DepId | Dep_name |
++------+--------+-------+----------+
+|    1 | Brijen | 1     | IT       |
+|    2 | Raj    | 2     | HR       |
+|    4 | Alex   | 1     | IT       |
+|    6 | Gwen   | 2     | HR       |
++------+--------+-------+----------+
+4 rows in set (0.00 sec)
+
+mysql> select Id,Name,Dep.DepId,Dep_name from Emp 
+cross join 
+Dep on Emp.DepId=Dep.DepId;
++------+--------+-------+----------+
+| Id   | Name   | DepId | Dep_name |
++------+--------+-------+----------+
+|    1 | Brijen | 1     | IT       |
+|    2 | Raj    | 2     | HR       |
+|    4 | Alex   | 1     | IT       |
+|    6 | Gwen   | 2     | HR       |
++------+--------+-------+----------+
+4 rows in set (0.00 sec)

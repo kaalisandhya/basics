@@ -1,0 +1,118 @@
+mysql> create table tblprod(id int,
+name varchar(20));
+Query OK, 0 rows affected (2.81 sec)
+mysql> insert into tblprod(id,name)values(01,'TV');
+Query OK, 1 row affected (0.22 sec)
+
+mysql> insert into tblprod(id,name)values(02,'LAPTAP');
+Query OK, 1 row affected (0.10 sec)
+
+mysql> insert into tblprod(id,name)values(03,'PENDRIVE');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> SELECT * FROM tblprod;
++------+----------+
+| id   | name     |
++------+----------+
+|    1 | TV       |
+|    2 | LAPTAP   |
+|    3 | PENDRIVE |
++------+----------+
+3 rows in set (0.00 sec)
+
+mysql> create table tblprodsales(id int,
+prodid int,
+unitprice int,
+qtysold int);
+Query OK, 0 rows affected (1.23 sec)
+
+mysql> insert into tblprodsales(id,prodid,unitprice,qtysold)values(1,3,4500,4);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> insert into tblprodsales(id,prodid,unitprice,qtysold)values(2,2,5600,3);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into tblprodsales(id,prodid,unitprice,qtysold)values(3,3,3430,7);
+Query OK, 1 row affected (0.07 sec)
+
+mysql> insert into tblprodsales(id,prodid,unitprice,qtysold)values(4,3,2340,2);
+Query OK, 1 row affected (0.05 sec)
+
+mysql> select * from 
+tblprodsales;
++------+--------+-----------+---------+
+| id   | prodid | unitprice | qtysold |
++------+--------+-----------+---------+
+|    1 |      3 |      4500 |       4 |
+|    2 |      2 |      5600 |       3 |
+|    3 |      3 |      3430 |       7 |
+|    4 |      3 |      2340 |       2 |
++------+--------+-----------+---------+
+4 rows in set (0.00 sec)
+
+mysql> select id,name from tblprod where 
+id in(select prodid from tblprodsales);
++------+----------+
+| id   | name     |
++------+----------+
+|    3 | PENDRIVE |
+|    2 | LAPTAP   |
++------+----------+
+2 rows in set (0.08 sec)
+
+mysql> select id,name from tblprod where 
+id>(select id from tblprodsales where prodid=2);
++------+----------+
+| id   | name     |
++------+----------+
+|    3 | PENDRIVE |
++------+----------+
+1 row in set (0.10 sec)
+
+mysql> select id,name from tblprod where 
+id>(select id from tblprodsales where prodid=2);
++------+----------+
+| id   | name     |
++------+----------+
+|    3 | PENDRIVE |
++------+----------+
+1 row in set (0.00 sec)
+
+mysql> select id,name from tblprod where 
+id NOT IN(select prodid from tblprodsales);
++------+------+
+| id   | name |
++------+------+
+|    1 | TV   |
++------+------+
+1 row in set (0.17 sec)
+mysql> select id,prodid from tblprodsales where 
+id=(select max(id) from tblprod);
++------+--------+
+| id   | prodid |
++------+--------+
+|    3 |      3 |
++------+--------+
+1 row in set (0.19 sec)
+
+mysql> select id,name from tblprod where 
+id in(select min(id) from tblprodsales group by prodid);
++------+--------+
+| id   | name   |
++------+--------+
+|    1 | TV     |
+|    2 | LAPTAP |
++------+--------+
+2 rows in set (0.06 sec)
+
+mysql> select id,name from tblprod where 
+id not in(select id from tblprodsales where prodid in(2));
++------+----------+
+| id   | name     |
++------+----------+
+|    1 | TV       |
+|    3 | PENDRIVE |
++------+----------+
+2 rows in set (0.00 sec)
+
+
