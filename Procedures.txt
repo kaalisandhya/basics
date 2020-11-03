@@ -1,0 +1,78 @@
+mysql> create table FindCustomerById(customeID int,name varchar(20));
+    -> /
+Query OK, 0 rows affected (1.99 sec)
+
+mysql> delimiter /
+mysql> create procedure FindCustomerById(IN customerID INT)
+    -> BEGIN
+    -> SELECT * FROM Customer where id=CustomerID;
+    -> end;
+    -> /
+Query OK, 0 rows affected (1.46 sec)
+Exec [dbo].[GETBook];
+
+create table Books1(BookID int primary key,
+BookName varchar(100),
+Category varchar(100),
+Price int);
+
+select * from Book1;
+BookID  BookName Category Price
+1	 java	  abc	  890
+2	 cloud	  bca	  990
+3	 .net	  tech	  1000
+4	 dbms	  dba	  780
+5	 c#	  mega	  1078
+
+create procedure GetBooks
+ as
+ begin
+ select * from Books1
+ end
+ go
+
+Exec [dbo].[GetBooks];
+
+USE [idg.com]
+GO
+
+/****** Object:  StoredProcedure [dbo].[GetBooks]    Script Date: 3-11-20 16:05:30 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+ALTER procedure [dbo].[GetBooks](
+@Category varchar(100)
+)
+ as
+ begin
+ select * from Books1 where [Category] =@Category
+ end
+GO
+BookID  BookName Category Price
+1	 java	 abc	  890
+2	 cloud	 bca	  990
+3	 .net	 tech	  1000
+4	 dbms	 dba	  780
+5	 c#	 mega	  1078
+
+Exec [dbo].[GetBooks] @Category='mega';
+
+BookID BookName Category Price
+5	c#	mega	1078
+
+Exec [dbo].[GetBooks] @Category='dba';
+
+BookID  BookName Category Price
+4	 dbms	 dba	  780
+
+Exec [dbo].[GetBooks] @Category='tech';
+
+BookID  BookName Category Price
+3	 .net	 tech	  1000
+Exec [dbo].[GetBooks] @Category='abc';
+
+BookID  BookName Category Price
+1	 java	 abc	  890
