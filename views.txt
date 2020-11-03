@@ -1,0 +1,58 @@
+mysql> select * from dep1;
++-------+-------+----------+
+| depno | Dname | Location |
++-------+-------+----------+
+|    10 | DBA   | HYD      |
+|    20 | SAP   | MUMBAI   |
+|    30 | HR    | PUNE     |
++-------+-------+----------+
+3 rows in set (0.11 sec)
+
+mysql> create view e1
+as 
+select * from dep1;
+Query OK, 0 rows affected (1.31 sec)
+
+mysql> select * from dep1;
++-------+-------+----------+
+| depno | Dname | Location |
++-------+-------+----------+
+|    10 | DBA   | HYD      |
+|    20 | SAP   | MUMBAI   |
+|    30 | HR    | PUNE     |
++-------+-------+----------+
+3 rows in set (0.00 sec)
+
+mysql> select * from e1;
++-------+-------+----------+
+| depno | Dname | Location |
++-------+-------+----------+
+|    10 | DBA   | HYD      |
+|    20 | SAP   | MUMBAI   |
+|    30 | HR    | PUNE     |
++-------+-------+----------+
+3 rows in set (0.24 sec)
+
+mysql> select Dname,
+Location from e1;
++-------+----------+
+| Dname | Location |
++-------+----------+
+| DBA   | HYD      |
+| SAP   | MUMBAI   |
+| HR    | PUNE     |
++-------+----------+
+3 rows in set (0.00 sec)
+
+mysql> drop view e1;
+Query OK, 0 rows affected (0.10 sec)
+
+mysql> select * from dep1;
++-------+-------+----------+
+| depno | Dname | Location |
++-------+-------+----------+
+|    10 | DBA   | HYD      |
+|    20 | SAP   | MUMBAI   |
+|    30 | HR    | PUNE     |
++-------+-------+----------+
+3 rows in set (0.00 sec)
